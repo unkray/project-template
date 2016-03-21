@@ -1,0 +1,17 @@
+{
+  "name": "Project Template",
+  "version": "",
+  "homepage": "",
+  "authors": [
+    "Andrew Sh. <andrew@shabalin.cc>"
+  ],
+  "dependencies": {
+    "jquery": "2.*",
+    "bootstrap-sass": "^3.3.0",
+    "formstone": "~0.8.36",
+    "jquery.inputmask": "~3.2.6",
+    "jquery-placeholder": "~2.3.1",
+    "jquery.cookie": "^1.4.1",
+    "jquery-selectric": "^1.9.5"
+  }
+}
