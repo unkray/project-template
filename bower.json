@@ -6,7 +6,7 @@
     "Andrew Sh. <andrew@shabalin.cc>"
   ],
   "dependencies": {
-    "jquery": "2.*",
+    "jquery": "^2.0",
     "bootstrap-sass": "^3.3.0",
     "formstone": "~0.8.36",
     "jquery.inputmask": "~3.2.6",
