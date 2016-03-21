@@ -25,9 +25,97 @@ var gulp = require("gulp"),
   RS_CONF = require('./rs-conf.js'),
   bootlint  = require('gulp-bootlint'),
   Promise = require('es6-promise').Promise,
+  browserSync = require('browser-sync').create(),
   replace = require('gulp-replace'),
   aside = require('gulp-aside');
 
+// Plugins options
+var options = {
+
+  path: {
+    build: {
+      html: './build/',
+      js: './build/js/',
+      css: './build/css/',
+      img: './build/img/',
+      fonts: './build/fonts/',
+      svgIcons: './build/img/svg-icons/'
+    },
+
+    src: {
+      html: './src/**/*.jade',
+      js: './src/js/*.js',
+      style: './src/style/main.styl',
+      img: './src/img/**/*.*',
+      fonts: './src/fonts/**/*.*',
+      svgIcons: './src/img/svg-icons/*.svg'
+    },
+
+    watch: {
+      html: './src/**/*.jade',
+      js: './src/js/**/*.js',
+      style: './src/style/**/*.styl',
+      img: './src/img/**/*.*',
+      fonts: './src/fonts/**/*.*',
+      svgIcons: './src/img/svg-icons/*.svg'
+    },
+
+    clean: './build'
+  },
+
+  browserSync: {
+    server: {
+      baseDir: RS_CONF.path.distBaseDir
+    }
+  },
+
+  plumber: {
+    errorHandler: errorHandler
+  },
+
+  stylus: {
+    'include css': true
+  },
+
+  jade: {
+    jade: jade,
+    pretty: '\t'
+  },
+
+  htmlPrettify: {
+    'unformatted': ['pre', 'code'],
+    'indent_with_tabs': true,
+    'preserve_newlines': true,
+    'brace_style': 'expand',
+    'end_with_newline': true
+  },
+
+  svgSymbols: {
+    title: false,
+    id: '%f',
+    className: '%f'
+  },
+
+  spritesmith: {
+    retinaSrcFilter: '**/*@2x.png',
+    imgName: 'sprite.png',
+    retinaImgName: 'sprite@2x.png',
+    cssName: 'sprite.styl',
+    algorithm: 'binary-tree',
+    padding: 8,
+    cssTemplate: './stylus.template.mustache'
+  },
+
+  imagemin: {
+    optimizationLevel: 3,
+    progressive: true,
+    interlaced: true,
+    svgoPlugins: [{removeViewBox: false}],
+    use: [
+      imageminPngquant()
+    ]
+  }
+};
 
 
 // * ====================================================== *
